@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from agno.agent import Agent
 from agno.models.groq import Groq
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -19,6 +20,20 @@ agent = Agent(
 )
 
 app = FastAPI()
+
+# Add CORS middleware here
+origins = [
+    "*"  # your frontend origin
+    # You can add more origins or use ["*"] for testing but not recommended for production
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,          # or ["*"] to allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],            # allow all HTTP methods
+    allow_headers=["*"],            # allow all headers
+)
 
 @app.get("/")
 def root():
