@@ -1,9 +1,0 @@
-agno
-groq
-python-dotenv
-duckduckgo-search
-pypdf
-
-fastapi
-uvicorn
-
